@@ -9,7 +9,7 @@ module.exports= (env, argv) => {
     devtool: prod ? "hidden-source-map" : "eval",
     entry: "./renderer/index.tsx",
     output: {
-      path: path.join(__dirname, "./dist"),
+      path: path.join(__dirname, "./../dist"),
       filename: "bundle.js",
     },
     resolve: {

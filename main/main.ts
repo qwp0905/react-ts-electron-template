@@ -13,7 +13,9 @@ const createWindow = (): void => {
       preload: path.join(__dirname, `/preload.js`)
     }
   })
-  win.loadURL('http://localhost:3000/')
+  const start_url: string = process.env.IS_DEV ? 'http://localhost:3000/' : `file://${__dirname}/../index.html`
+
+  win.loadURL(start_url)
   win.webContents.openDevTools()
   win.on('close', () => {
     win = null!

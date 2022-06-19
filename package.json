@@ -2,12 +2,18 @@
   "name": "electron-template",
   "version": "1.0.0",
   "description": "",
-  "main": "./dist/main.js",
+  "main": "./dist/main/main.js",
   "scripts": {
     "react-dev": "webpack-dev-server --config=./build/webpack.config.js --mode=development --progress",
-    "react-build": "webpack --config=build/webpack.config.js --mode=production  --progress",
+    "react-build": "webpack --config=build/webpack.config.js --mode=production  --progress && tsc -p tsconfig.json",
     "react-start": "webpack --config=build/webpack.config.js --mode=development  --progress",
-    "dev": "tsc -p tsconfig.json && concurrently \"npm run react-dev\" \"wait-on http://localhost:3000/ && electron .\""
+    "dev": "npm run react-build && concurrently \"npm run react-dev\" \"wait-on http://localhost:3000/ && cross-env IS_DEV=true electron .\"",
+    "start":"npm run react-build && electron .",
+    "build:win64":"npm run react-build && electron-builder --win --x64",
+    "build:mac":"npm run react-build && electron-builder --mac",
+    "build:win32":"npm run react-build && electron-builder --win --ia32",
+    "build:linux32":"npm run react-build && electron-builder --linux --ia32",
+    "build:linux64":"npm run react-build && electron-builder --linux --x64"
   },
   "dependencies": {
     "react": "^18.2.0",
@@ -26,6 +32,7 @@
     "babel-loader": "^8.2.5",
     "concurrently": "^7.2.2",
     "cross-env": "^7.0.3",
+    "dotenv": "^16.0.1",
     "electron": "^19.0.4",
     "electron-builder": "^23.0.3",
     "eslint": "^8.18.0",
@@ -37,5 +44,20 @@
     "webpack": "^5.73.0",
     "webpack-cli": "^4.10.0",
     "webpack-dev-server": "^4.9.2"
+  },
+  "build": {
+    "productName": "electron-template",
+    "appId": "com.electron.main",
+    "asar": true,
+    "files":[
+      "./dist",
+      "./node_modules",
+      "./package.json"
+    ],
+    "directories": {
+      "buildResources":"./dist",
+      "output": "./build/installer/",
+      "app": "."
+    }
   }
 }
