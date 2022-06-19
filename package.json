@@ -7,8 +7,7 @@
     "react-dev": "webpack-dev-server --config=./build/webpack.config.js --mode=development --progress",
     "react-build": "webpack --config=build/webpack.config.js --mode=production  --progress",
     "react-start": "webpack --config=build/webpack.config.js --mode=development  --progress",
-    "start": "tsc -p tsconfig.json && concurrently \"npm run react-dev\" \"wait-on http://localhost:3000/ && electron .\"",
-    "el": "electron ."
+    "start": "tsc -p tsconfig.json && concurrently \"npm run react-dev\" \"wait-on http://localhost:3000/ && electron .\""
   },
   "dependencies": {
     "react": "^18.2.0",
