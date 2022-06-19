@@ -3,17 +3,18 @@ import path from 'path'
 
 let win: BrowserWindow
 
-const createWindow = () => {
+const createWindow = (): void => {
   win = new BrowserWindow({
     width: 900,
     height: 600,
     webPreferences: {
       nodeIntegration: true,
+      devTools: true,
       preload: path.join(__dirname, `/preload.js`)
     }
   })
-  win.webContents.openDevTools()
   win.loadURL('http://localhost:3000/')
+  win.webContents.openDevTools()
   win.on('close', () => {
     win = null!
   })
