@@ -13,7 +13,7 @@ const createWindow = (): void => {
       preload: path.join(__dirname, `/preload.js`)
     }
   })
-  const start_url: string = process.env.IS_DEV ? 'http://localhost:3000/' : `file://${__dirname}/../index.html`
+  const start_url: string = app.isPackaged ? 'http://localhost:3000/' : `file://${__dirname}/dist/index.html/`
 
   win.loadURL(start_url)
   win.webContents.openDevTools()

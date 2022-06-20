@@ -11,6 +11,7 @@ module.exports= (env, argv) => {
     output: {
       path: path.join(__dirname, "./../dist"),
       filename: "bundle.js",
+      
     },
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx"],
@@ -19,7 +20,7 @@ module.exports= (env, argv) => {
       rules: [
         {
           test: /\.tsx?$/,
-          use: ["babel-loader", "ts-loader"],
+          use: ["babel-loader", "ts-loader"]
         },
       ],
     },

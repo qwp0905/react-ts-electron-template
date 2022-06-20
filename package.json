@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "main": "./dist/main/main.js",
+  "homepage":".",
   "scripts": {
     "react-dev": "webpack-dev-server --config=./build/webpack.config.js --mode=development --progress",
     "react-build": "webpack --config=build/webpack.config.js --mode=production  --progress && tsc -p tsconfig.json",
@@ -50,8 +51,8 @@
     "appId": "com.electron.main",
     "asar": true,
     "files":[
-      "./dist",
-      "./node_modules",
+      "./dist/**/*",
+      "./node_modules/**/*",
       "./package.json"
     ],
     "directories": {
