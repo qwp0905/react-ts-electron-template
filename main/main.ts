@@ -1,4 +1,4 @@
-import { app, BrowserWindow } from 'electron';
+import { app, BrowserWindow, ipcMain, IpcMainEvent } from 'electron';
 import path from 'path'
 
 let win: BrowserWindow
@@ -13,7 +13,7 @@ const createWindow = (): void => {
       preload: path.join(__dirname, `/preload.js`)
     }
   })
-  const start_url: string = app.isPackaged ? 'http://localhost:3000/' : `file://${__dirname}/dist/index.html/`
+  const start_url: string = process.env.IS_DEV ? 'http://localhost:3000' : `file://${__dirname}/../index.html`
 
   win.loadURL(start_url)
   win.webContents.openDevTools()
@@ -36,8 +36,8 @@ app.on('activate', () => {
   }
 })
 
-ipcMain.on('test',async (event,arg)=>{
+ipcMain.on('test',async (event:IpcMainEvent,arg:any)=>{
   // await test()
-  event.reply('reply','abcde')
   console.log(arg)
+  event.reply('reply','abcde')
 })

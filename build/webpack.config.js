@@ -7,21 +7,23 @@ module.exports= (env, argv) => {
   return {
     mode: prod ? "production" : "development",
     devtool: prod ? "hidden-source-map" : "eval",
-    entry: "./renderer/index.tsx",
+    entry: {
+      app:"./renderer/index.tsx"
+    },
     output: {
       path: path.join(__dirname, "./../dist"),
       filename: "bundle.js",
-      
     },
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx"],
+      modules:['./../node_modules']
     },
     module: {
       rules: [
         {
           test: /\.tsx?$/,
-          use: ["babel-loader", "ts-loader"]
-        },
+          use: ["babel-loader", "ts-loader"]        
+        }
       ],
     },
     devServer: {
@@ -33,7 +35,7 @@ module.exports= (env, argv) => {
         React: "react",
       }),
       new HtmlWebpackPlugin({
-        template: "./renderer/index.html",
+        template: "./renderer/index.html"
       }),
       new HotModuleReplacementPlugin()
     ],
