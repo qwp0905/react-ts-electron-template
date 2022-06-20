@@ -35,3 +35,9 @@ app.on('activate', () => {
     createWindow();
   }
 })
+
+ipcMain.on('test',async (event,arg)=>{
+  // await test()
+  event.reply('reply','abcde')
+  console.log(arg)
+})
